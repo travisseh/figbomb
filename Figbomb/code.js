@@ -33,11 +33,22 @@
 async function runPlugin() {
     
     await figma.loadFontAsync({ family: "Roboto", style: "Regular" })
+
+    console.log(figma.viewport.bounds)
     
     const Xcenter = figma.viewport.center.x
     const Ycenter = figma.viewport.center.y
+    const viewWidth = figma.viewport.bounds.width
+    const viewHeight = figma.viewport.bounds.height
+    const leftXBorder = Xcenter - (viewWidth/2)
+    const rightXBorder = Xcenter + (viewWidth / 2)
+    const topYBorder = Ycenter + (viewHeight/2)
+    const bottomYBorder = Ycenter - (viewHeight / 2)
+    
     
     figma.currentPage.children.forEach(node => {
+
+        if (node.x > leftXBorder && node.x < rightXBorder && node.y > bottomYBorder && node.y < topYBorder) {
             
             if (node.x > Xcenter) {
                 node.x += Math.random() * 2000
@@ -51,6 +62,8 @@ async function runPlugin() {
                 node.y -= Math.random() * 2000
                 node.rotation += Math.random() * -180
             }
+        }
+            
     
         
     })
@@ -72,6 +85,8 @@ async function runPlugin() {
 runPlugin();
 
 figma.closePlugin();
+
+
 
 
 // frame.x = figma.viewport.center.x - frameWidth / 2
