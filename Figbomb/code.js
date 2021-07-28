@@ -65,17 +65,17 @@ async function runPlugin() {
     Text.fontSize = 100
     Text.textAlignHorizontal = "CENTER"
     Text.resize(1000, 200)
-    Text.hyperlink = {
-    type: "URL",
-    value: "www.ksl.com",
-}
-    
-    figma.closePlugin();
+    // Text.setRangeHyperlink(5,10, "www.google.com")
+    console.log(Text.getRangeFontSize(5,10))
+    Text.setRangeHyperlink(11,22, {type: "URL", value: "https://www.ksl.com"})
+    Text.setRangeTextDecoration(11, 22, "UNDERLINE")
+    // figma.closePlugin();
 
 }
 
 runPlugin();
 
+figma.closePlugin();
 
 
 // frame.x = figma.viewport.center.x - frameWidth / 2
