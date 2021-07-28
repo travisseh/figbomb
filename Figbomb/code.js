@@ -38,8 +38,6 @@ async function runPlugin() {
     const Ycenter = figma.viewport.center.y
     
     figma.currentPage.children.forEach(node => {
-    
-        // if (node.type === 'FRAME') {
             
             if (node.x > Xcenter) {
                 node.x += Math.random() * 2000
@@ -48,11 +46,11 @@ async function runPlugin() {
             }
             if (node.y > Ycenter) {
                 node.y += Math.random() * 2000
+                node.rotation += Math.random() * 180
             } else {
                 node.y -= Math.random() * 2000
+                node.rotation += Math.random() * -180
             }
-    
-        // }
     
         
     })
@@ -65,11 +63,9 @@ async function runPlugin() {
     Text.fontSize = 100
     Text.textAlignHorizontal = "CENTER"
     Text.resize(1000, 200)
-    // Text.setRangeHyperlink(5,10, "www.google.com")
     console.log(Text.getRangeFontSize(5,10))
-    Text.setRangeHyperlink(11,22, {type: "URL", value: "https://www.ksl.com"})
-    Text.setRangeTextDecoration(11, 22, "UNDERLINE")
-    // figma.closePlugin();
+    Text.setRangeHyperlink(12,22, {type: "URL", value: "https://www.ksl.com"})
+    Text.setRangeTextDecoration(12, 22, "UNDERLINE")
 
 }
 
